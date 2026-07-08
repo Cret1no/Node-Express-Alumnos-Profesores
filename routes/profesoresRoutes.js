@@ -1,15 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const profesoresController = require('../controllers/profesoresController.js');
+const {
+  consultar,
+  ingresar,
+  consultarDetalle,
+  actualizar,
+  borrar,
+} = require('../controllers/profesoresController.js');
 
-router.get('/', profesoresController.consultar);
+router.get('/', consultar);
 
-router.post('/', profesoresController.ingresar);
+router.post('/', ingresar);
 
-router
-  .route('/:id')
-  .get(profesoresController.consultarDetalle)
-  .put(profesoresController.actualizar)
-  .delete(profesoresController.borrar);
+router.route('/:id').get(consultarDetalle).put(actualizar).delete(borrar);
 
 module.exports = router;

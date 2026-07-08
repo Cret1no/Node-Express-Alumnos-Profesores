@@ -3,6 +3,7 @@ const app = express();
 const estudiantesRoutes = require('./routes/estudiantesRoutes.js');
 const profesoresRoutes = require('./routes/profesoresRoutes.js');
 
+app.use(express.json());
 app.get('/', (req, res) => {
   res.send('Proyecto Node-Express con base de datos');
 });
