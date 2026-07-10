@@ -7,9 +7,10 @@ class EstudiantesController {
     try {
       db.query('SELECT * FROM estudiantes', (err, rows) => {
         if (err) {
-          res.status(400).send(err);
+          res.status(400).send(err.message);
+        } else {
+          res.status(200).json(rows);
         }
-        res.status(200).json(rows);
       });
     } catch (error) {
       res.status(500).send(error.message);
@@ -21,9 +22,10 @@ class EstudiantesController {
       const { id } = req.params;
       db.query(`SELECT * FROM estudiantes WHERE id = ?`, [id], (err, rows) => {
         if (err) {
-          res.status(400).send(err);
+          res.status(400).send(err.message);
+        } else {
+          res.status(200).json(rows[0]);
         }
-        res.status(200).json(rows[0]);
       });
     } catch (error) {
       res.status(500).send(error.message);
@@ -40,9 +42,10 @@ class EstudiantesController {
         [nombre, apellido, dni, email],
         (err, rows) => {
           if (err) {
-            res.status(400).send(err);
+            res.status(400).send(err.message);
+          } else {
+            res.status(201).json({ id: rows.insertId });
           }
-          res.status(201).json({ id: rows.insertId });
         },
       );
     } catch (error) {
