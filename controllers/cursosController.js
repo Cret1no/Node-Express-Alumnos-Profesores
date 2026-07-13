@@ -93,6 +93,27 @@ class CursosController {
       res.status(500).send(error.message);
     }
   }
+
+  asociarEstudiante(req, res) {
+    try {
+      const { curso_id, estudiante_id } = req.body;
+      db.query(
+        `INSERT INTO cursos_estudiantes
+        (curso_id, estudiante_id)
+        VALUES(?, ?);`,
+        [curso_id, estudiante_id],
+        (err, rows) => {
+          if (err) {
+            res.status(400).send(err.message);
+          } else {
+            res.status(201).json({ id: rows.insertId });
+          }
+        },
+      );
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  }
 }
 
 module.exports = new CursosController();
