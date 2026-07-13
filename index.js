@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const estudiantesRoutes = require('./routes/estudiantesRoutes.js');
 const profesoresRoutes = require('./routes/profesoresRoutes.js');
+const cursosRoutes = require('./routes/cursosRoutes.js');
 
 app.use(express.json());
 app.use(cors());
@@ -12,6 +13,7 @@ app.get('/', (req, res) => {
 
 app.use('/estudiantes', estudiantesRoutes);
 app.use('/profesores', profesoresRoutes);
+app.use('/cursos', cursosRoutes);
 
 app.listen(3000, (req, res) => {
   console.log('Servidor escuchando en http://localhost:3000');

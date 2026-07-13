@@ -6,7 +6,7 @@ const {
   consultarDetalle,
   actualizar,
   borrar,
-} = require('../controllers/estudiantesController.js');
+} = require('../controllers/cursosController.js');
 
 router.get('/', consultar);
 
